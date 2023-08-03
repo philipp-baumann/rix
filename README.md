@@ -172,6 +172,7 @@ wsl --install
 Further installation notes you can find at [this official MS
 documentation](https://learn.microsoft.com/en-us/windows/wsl/install).
 
+<<<<<<< HEAD
 The only difference is that
 
 ``` sh
@@ -181,6 +182,8 @@ curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
 will be for single-user installations if you have `systemd` disabled
 (default).
 
+=======
+>>>>>>> 8a34352 (revert addition to resolve conflict)
 ## Contributing
 
 This package is developed using the `{fusen}` package. If you want to
