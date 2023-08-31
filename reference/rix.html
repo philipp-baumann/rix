@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rix</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,22 +56,25 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rix</span><span class="op">(</span></span>
-<span>  r_ver <span class="op">=</span> <span class="st">"current"</span>,</span>
-<span>  <span class="va">r_pkgs</span>,</span>
-<span>  other_pkgs <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  r_ver <span class="op">=</span> <span class="st">"latest"</span>,</span>
+<span>  r_pkgs <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  system_pkgs <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  git_pkgs <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ide <span class="op">=</span> <span class="st">"other"</span>,</span>
 <span>  project_path <span class="op">=</span> <span class="st">"."</span>,</span>
-<span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  print <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  shell_hook <span class="op">=</span> <span class="st">"R --vanilla"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>r_ver</dt>
-<dd><p>Character, defaults to "current". The required R version. To use the current version
-of R, use "current". You can check which R versions are available using <code>available_r</code>.
-If a nixpkgs revision is provided instead, this gets returned.</p></dd>
+<dd><p>Character, defaults to "latest". The required R version, for example "4.0.0".
+To use the latest version of R, use "latest", if you need the latest, bleeding edge version
+of R and packages, then use "latest". You can check which R versions are available using <code>available_r</code>.
+For reproducibility purposes, you can also provide a nixpkgs revision.</p></dd>
 
 
 <dt>r_pkgs</dt>
@@ -79,7 +82,7 @@ If a nixpkgs revision is provided instead, this gets returned.</p></dd>
 analysis here.</p></dd>
 
 
-<dt>other_pkgs</dt>
+<dt>system_pkgs</dt>
 <dd><p>Vector of characters. List further software you wish to install that
 are not R packages such as command line applications for example.</p></dd>
 
@@ -90,7 +93,7 @@ are not R packages such as command line applications for example.</p></dd>
 
 <dt>ide</dt>
 <dd><p>Character, defaults to "other". If you wish to use RStudio to work
-interactively use "rstudio", "code" for Visual Studio Code. For other editors,
+interactively use "rstudio" or "code" for Visual Studio Code. For other editors,
 use "other". This has been tested with RStudio, VS Code and Emacs. If other
 editors don't work, please open an issue.</p></dd>
 
@@ -104,6 +107,16 @@ The file will thus be written to the file "/home/path/to/project/default.nix".</
 <dt>overwrite</dt>
 <dd><p>Logical, defaults to FALSE. If TRUE, overwrite the <code>default.nix</code>
 file in the specified path.</p></dd>
+
+
+<dt>print</dt>
+<dd><p>Logical, defaults to FALSE. If TRUE, print <code>default.nix</code> to console.</p></dd>
+
+
+<dt>shell_hook</dt>
+<dd><p>Character, defaults to <code>"R --vanilla"</code>. Commands added to the shell_hook get
+executed when the Nix shell starts (via <code>shellHook</code>). So by default, using <code>nix-shell default.nix</code> will
+start R. Set to NULL if you want bash to be started instead.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -139,11 +152,11 @@ version of <code>{AER}</code> but an old version of <code>{ggplot2}</code>, you 
 write: <code>r_pkgs = c("AER", "ggplot2@2.2.1")</code>. Note
 however that doing this could result in dependency hell, because an older
 version of a package might need older versions of its dependencies, but other
-packages might need more recent version of the same dependencies. If instead you
+packages might need more recent versions of the same dependencies. If instead you
 want to use an environment as it would have looked at the time of <code>{ggplot2}</code>'s
 version 2.2.1 release, then use the Nix revision closest to that date, by setting
 <code>r_ver = "3.1.0"</code>, which was the version of R current at the time. This
-ensures that Nix builds a complete coherent environment.</p>
+ensures that Nix builds a completely coherent environment.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
