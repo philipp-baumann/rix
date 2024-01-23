@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rix</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +29,7 @@
     <a class="dropdown-item" href="../articles/handling-packages-with-remote-dependencies.html">Handling packages with remote dependencies</a>
     <a class="dropdown-item" href="../articles/interactive-use.html">Interactive use</a>
     <a class="dropdown-item" href="../articles/reproducible-analytical-pipelines-with-nix.html">Reproducible Analytical Pipelines with Nix</a>
+    <a class="dropdown-item" href="../articles/running-r-or-shell-code-in-nix-from-r.html">Running R or shell code in Nix from R</a>
     <a class="dropdown-item" href="../articles/save-the-nix-package-versions-data.html">Save the Nix Package Versions data</a>
   </div>
 </li>
@@ -49,6 +50,18 @@
       
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.1.9000" id="rix-0519000-2024-01-17">rix 0.5.1.9000 (2024-01-17)<a class="anchor" aria-label="anchor" href="#rix-0519000-2024-01-17"></a></h2>
+<ul><li>Added <code><a href="../reference/init.html">rix::init()</a></code> to initialize and maintain an isolated, project-specific, and pure R setup via Nix. It accomplishes this by writing a custom <code>.Rprofile</code> that guarantees R packages can only be attached from Nix paths, preventing unnoticed loading from the system’s R user library (<code>R_LIBS_USER</code> and ensuring runtime purity regarding packages and linked libraries). Additionally, it appends <code>/nix/var/nix/profiles/default/bin</code> to the <code>PATH</code>. Currently, this modification only takes effect in the current R session and not in new R sessions for RStudio on MacOS. This is because the default R session is not started from a shell. The <code>PATH</code> will be modified by RStudio when starting the R session, effectively after loading the local <code>.Rprofile</code>. Future versions of RStudio will hopefully respect all environmental variables from a shell environment.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.1" id="rix-051-2024-01-16">rix 0.5.1 (2024-01-16)<a class="anchor" aria-label="anchor" href="#rix-051-2024-01-16"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-0-5-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-5-1"></a></h3>
+<ul><li>
+<code><a href="../reference/rix.html">rix::rix()</a></code>: patch for nixpkgs revisions corresponding to R (<code>r_ver</code>) &lt;= 4.2.0; <code>nix-build</code> failed because attribute <code>glibcLocalesUtf8</code> was not found. Fixed by importing <code>gibcLocales</code>. Thanks @motorlearner for reporting.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.0" id="rix-050-2024-01-07">rix 0.5.0 (2024-01-07)<a class="anchor" aria-label="anchor" href="#rix-050-2024-01-07"></a></h2>
 <div class="section level3">
