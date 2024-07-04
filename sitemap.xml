@@ -46,10 +46,19 @@
     <loc>https://b-rodrigues.github.io/rix/articles/z-advanced-topic-running-r-or-shell-code-in-nix-from-r.html</loc>
   </url>
   <url>
-    <loc>https://b-rodrigues.github.io/rix/articles/z-developers-vignette-generate-an-environment-with-rix-only.html</loc>
+    <loc>https://b-rodrigues.github.io/rix/articles/z-advanced-topic-using-nix-inside-docker.html</loc>
   </url>
   <url>
-    <loc>https://b-rodrigues.github.io/rix/articles/z-developers-vignette-save-the-nix-package-versions-data.html</loc>
+    <loc>https://b-rodrigues.github.io/rix/articles/z-binary_cache.html</loc>
+  </url>
+  <url>
+    <loc>https://b-rodrigues.github.io/rix/articles/z-bleeding_edge.html</loc>
+  </url>
+  <url>
+    <loc>https://b-rodrigues.github.io/rix/articles/z-contributing_to_nixpkgs.html</loc>
+  </url>
+  <url>
+    <loc>https://b-rodrigues.github.io/rix/articles/z-developers-vignette-generate-an-environment-with-rix-only.html</loc>
   </url>
   <url>
     <loc>https://b-rodrigues.github.io/rix/authors.html</loc>
@@ -64,13 +73,28 @@
     <loc>https://b-rodrigues.github.io/rix/reference/available_r.html</loc>
   </url>
   <url>
+    <loc>https://b-rodrigues.github.io/rix/reference/ga_cachix.html</loc>
+  </url>
+  <url>
+    <loc>https://b-rodrigues.github.io/rix/reference/get_sri_hash_deps.html</loc>
+  </url>
+  <url>
+    <loc>https://b-rodrigues.github.io/rix/reference/hash_cran.html</loc>
+  </url>
+  <url>
+    <loc>https://b-rodrigues.github.io/rix/reference/hash_git.html</loc>
+  </url>
+  <url>
+    <loc>https://b-rodrigues.github.io/rix/reference/hash_url.html</loc>
+  </url>
+  <url>
     <loc>https://b-rodrigues.github.io/rix/reference/index.html</loc>
   </url>
   <url>
     <loc>https://b-rodrigues.github.io/rix/reference/nix_build.html</loc>
   </url>
   <url>
-    <loc>https://b-rodrigues.github.io/rix/reference/r_nix_revs.html</loc>
+    <loc>https://b-rodrigues.github.io/rix/reference/nix_hash.html</loc>
   </url>
   <url>
     <loc>https://b-rodrigues.github.io/rix/reference/rix.html</loc>

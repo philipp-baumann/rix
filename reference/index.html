@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rix</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,8 +35,11 @@
     <a class="dropdown-item" href="../articles/z-advanced-topic-handling-packages-with-remote-dependencies.html">z - Advanced topic: Handling packages with remote dependencies</a>
     <a class="dropdown-item" href="../articles/z-advanced-topic-reproducible-analytical-pipelines-with-nix.html">z - Advanced topic: Reproducible Analytical Pipelines with Nix</a>
     <a class="dropdown-item" href="../articles/z-advanced-topic-running-r-or-shell-code-in-nix-from-r.html">z - Advanced topic: Running R or Shell Code in Nix from R</a>
+    <a class="dropdown-item" href="../articles/z-advanced-topic-using-nix-inside-docker.html">z - Advanced topic: Using Nix inside Docker</a>
+    <a class="dropdown-item" href="../articles/z-binary_cache.html">z - Advanced topic: Rolling out your own binary cache</a>
+    <a class="dropdown-item" href="../articles/z-bleeding_edge.html">z - Advanced topic: Understanding the rPackages set release cycle and using bleeding edge packages</a>
+    <a class="dropdown-item" href="../articles/z-contributing_to_nixpkgs.html">z - Advanced topic: Contributing to nixpkgs</a>
     <a class="dropdown-item" href="../articles/z-developers-vignette-generate-an-environment-with-rix-only.html">z - Developers Vignette: Generate an environment with rix only</a>
-    <a class="dropdown-item" href="../articles/z-developers-vignette-save-the-nix-package-versions-data.html">z - Developers Vignette: Save the Nix Package Versions data</a>
   </div>
 </li>
 <li class="nav-item">
@@ -74,9 +77,34 @@
 
       <dl><dt>
           
-          <code><a href="available_r.html">available_r()</a></code> 
+          <code><a href="available_r.html">available_r()</a></code> <code><a href="available_r.html">available_r</a></code> 
         </dt>
         <dd>List available R versions from Nixpkgs</dd>
+      </dl><dl><dt>
+          
+          <code><a href="ga_cachix.html">ga_cachix()</a></code> 
+        </dt>
+        <dd>ga_cachix Build an environment on Github Actions and cache it on Cachix</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_sri_hash_deps.html">get_sri_hash_deps()</a></code> 
+        </dt>
+        <dd>Return the sri hash of a path using <code>nix-hash --type sha256 --sri &lt;path&gt;</code> with local Nix, or using an online API service (equivalent <code>nix hash path --sri &lt;path&gt;</code>) if Nix is not available</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hash_cran.html">hash_cran()</a></code> 
+        </dt>
+        <dd>Return the SRI hash of a CRAN package source using <code>nix hash path --sri path</code></dd>
+      </dl><dl><dt>
+          
+          <code><a href="hash_git.html">hash_git()</a></code> 
+        </dt>
+        <dd>Return the SRI hash of a GitHub repository at a given unique commmit ID</dd>
+      </dl><dl><dt>
+          
+          <code><a href="hash_url.html">hash_url()</a></code> 
+        </dt>
+        <dd>Return the SRI hash of an URL with .tar.gz</dd>
       </dl><dl><dt>
           
           <code><a href="nix_build.html">nix_build()</a></code> 
@@ -84,14 +112,14 @@
         <dd>Invoke shell command <code>nix-build</code> from an R session</dd>
       </dl><dl><dt>
           
-          <code><a href="r_nix_revs.html">r_nix_revs</a></code> 
+          <code><a href="nix_hash.html">nix_hash()</a></code> 
         </dt>
-        <dd>r_nix_revs</dd>
+        <dd>Return the sri hash of a path using <code>nix hash path --sri path</code> if Nix is available locally</dd>
       </dl><dl><dt>
           
           <code><a href="rix.html">rix()</a></code> 
         </dt>
-        <dd>rix Generates a Nix expression that builds a reproducible development environment</dd>
+        <dd>Generate a Nix expression that builds a reproducible development environment</dd>
       </dl><dl><dt>
           
           <code><a href="rix_init.html">rix_init()</a></code> 

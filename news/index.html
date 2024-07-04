@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rix</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,8 +35,11 @@
     <a class="dropdown-item" href="../articles/z-advanced-topic-handling-packages-with-remote-dependencies.html">z - Advanced topic: Handling packages with remote dependencies</a>
     <a class="dropdown-item" href="../articles/z-advanced-topic-reproducible-analytical-pipelines-with-nix.html">z - Advanced topic: Reproducible Analytical Pipelines with Nix</a>
     <a class="dropdown-item" href="../articles/z-advanced-topic-running-r-or-shell-code-in-nix-from-r.html">z - Advanced topic: Running R or Shell Code in Nix from R</a>
+    <a class="dropdown-item" href="../articles/z-advanced-topic-using-nix-inside-docker.html">z - Advanced topic: Using Nix inside Docker</a>
+    <a class="dropdown-item" href="../articles/z-binary_cache.html">z - Advanced topic: Rolling out your own binary cache</a>
+    <a class="dropdown-item" href="../articles/z-bleeding_edge.html">z - Advanced topic: Understanding the rPackages set release cycle and using bleeding edge packages</a>
+    <a class="dropdown-item" href="../articles/z-contributing_to_nixpkgs.html">z - Advanced topic: Contributing to nixpkgs</a>
     <a class="dropdown-item" href="../articles/z-developers-vignette-generate-an-environment-with-rix-only.html">z - Developers Vignette: Generate an environment with rix only</a>
-    <a class="dropdown-item" href="../articles/z-developers-vignette-save-the-nix-package-versions-data.html">z - Developers Vignette: Save the Nix Package Versions data</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -62,6 +65,74 @@
       <small>Source: <a href="https://github.com/b-rodrigues/rix/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.8.0" id="rix-080-2024-07-02">rix 0.8.0 (2024-07-02)<a class="anchor" aria-label="anchor" href="#rix-080-2024-07-02"></a></h2>
+<div class="section level3">
+<h3 id="new-features-0-8-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-8-0"></a></h3>
+<ul><li>
+<code><a href="../reference/rix.html">rix()</a></code>:
+<ul><li>Added possibility to install local archives via <code>local_r_pkgs</code> argument.</li>
+<li>Compute hash of git and CRAN archive packages locally if nix is installed. There also a new <code>options(rix.sri_hash="API_server")</code>, so that online hashing via <a href="http://git2nixsha.dev" class="external-link uri">http://git2nixsha.dev</a> can be requested even when Nix is installed locally.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="user-facing-changes-0-8-0">User-facing changes<a class="anchor" aria-label="anchor" href="#user-facing-changes-0-8-0"></a></h3>
+<ul><li>
+<code><a href="../reference/rix.html">rix()</a></code>:
+<ul><li>Now runs <code><a href="../reference/rix_init.html">rix_init()</a></code> to ensure runtime purity via <code>.Rprofile</code>. This will exclude the system’s user library from <code><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths()</a></code>, so that the search path will only contain a path each per package in the Nix store.</li>
+<li>New <code>message_type</code> option to control signalling what is done.</li>
+</ul></li>
+<li>
+<code><a href="../reference/nix_build.html">nix_build()</a></code>, <code><a href="../reference/with_nix.html">with_nix()</a></code>: stabilize API; get rid of <code>exec_mode</code> in core functions. In most cases, “non-blocking” system calls are being run for system commands like <code>nix-shell</code> or <code>nix-build</code>.</li>
+<li>
+<code><a href="../reference/rix_init.html">rix_init()</a></code>, <code><a href="../reference/nix_build.html">nix_build()</a></code>, and <code><a href="../reference/with_nix.html">with_nix()</a></code>: gain a <code>message_type = "quiet"</code>, which suppresses messages. Further, messaging is standardized via internal helpers called.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="chores-0-8-0">Chores<a class="anchor" aria-label="anchor" href="#chores-0-8-0"></a></h3>
+<ul><li>Fine-tune formatting of *.nix files generated</li>
+<li>low-level requests with {curl} -&gt; remove {httr} dependency</li>
+<li>ROpenSci review: complete documentation of internal functions</li>
+<li>remove <code>nix_file</code> interface for <code><a href="../reference/with_nix.html">with_nix()</a></code>
+</li>
+<li>document</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.7.1" id="rix-071-2024-05-24">rix 0.7.1 (2024-05-24)<a class="anchor" aria-label="anchor" href="#rix-071-2024-05-24"></a></h2>
+<ul><li>Better messages of comments on top of the generated <code>default.nix</code> files.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.7.0" id="rix-070-2024-05-21">rix 0.7.0 (2024-05-21)<a class="anchor" aria-label="anchor" href="#rix-070-2024-05-21"></a></h2>
+<ul><li>Added the possibility to create “bleeding_edge” and “frozen_edge” environments</li>
+<li>Added the possibility to use <em>radian</em> as the environment’s console (courtesy of <a href="https://github.com/b-rodrigues/rix/pull/161" class="external-link">kupac</a>) and <em>RStudio server</em>
+</li>
+<li>Added <code><a href="../reference/ga_cachix.html">ga_cachix()</a></code>, a function to create a GA workflow file that builds and pushes an environment to a Cachix cache</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.0.9000" id="rix-0609000-2024-05-05">rix 0.6.0.9000 (2024-05-05)<a class="anchor" aria-label="anchor" href="#rix-0609000-2024-05-05"></a></h2>
+<ul><li>
+<code><a href="../reference/with_nix.html">with_nix()</a></code>: do not use <code>--vanilla</code> because it does not respect custom code startup via <code>.Rprofile</code>
+</li>
+<li>
+<code><a href="../reference/nix_build.html">nix_build()</a></code> and <code><a href="../reference/with_nix.html">with_nix()</a></code>: improvements. Remove <code>nix-build</code> artefact file by using <code><a href="https://rdrr.io/r/base/Sys.which.html" class="external-link">Sys.which()</a></code> for checking availability. <code><a href="../reference/with_nix.html">with_nix()</a></code>: clean all itermediary and output artefacts (files) on exit</li>
+<li>Patch <code><a href="../reference/rix.html">rix()</a></code> with <code>shell_hook = NULL</code> default, Nix-R wrappers <code><a href="../reference/nix_build.html">nix_build()</a></code> and <code><a href="../reference/with_nix.html">with_nix()</a></code>; update testfiles</li>
+<li>
+<code><a href="../reference/with_nix.html">with_nix()</a></code>: try <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code>; fails under R Nixpkgs on darwin</li>
+<li>Do not remove <code>R_LIBS_USER</code> from .libPaths() in covr test environment</li>
+<li>
+<code><a href="../reference/nix_build.html">nix_build()</a></code> &amp; <code><a href="../reference/with_nix.html">with_nix()</a></code>: fix segmentation fault with adjusting <code>LD_LIBRARY_PATH</code> temporarily</li>
+<li>
+<code><a href="../reference/nix_build.html">nix_build()</a></code>: consistently separate cmd and args for <code>nix-build</code> system command</li>
+<li>
+<code><a href="../reference/nix_build.html">nix_build()</a></code>: another guardrail for run-time purity of Nixpkgs R</li>
+<li>implement <code>nix_file</code> to specify specific <code>.nix</code> file</li>
+<li>Make <code>nix_shell()</code> and <code><a href="../reference/with_nix.html">with_nix()</a></code> compatible with RStudio on macOS, where the R session is not (yet) started from a shell. Now <code>/nix/var/nix/profiles/default/bin</code> is added to the <code>PATH</code> variable after <code>nix_shell()</code> or <code><a href="../reference/with_nix.html">with_nix()</a></code> are called from an RStudio version of the system (not as Nix package).</li>
+<li>Add <code>rix::init()</code> to initiate and maintain an isolated, project-specific and pure R setup via Nix</li>
+<li>update with <code>glibcLocales</code> patch -<code><a href="../reference/with_nix.html">with_nix()</a></code> needs patch for R &lt;= 4.2.0; <code>glibcLocalesUtf8</code> -&gt; <code>gibcLocales</code>
+</li>
+<li>Implement <code><a href="../reference/with_nix.html">with_nix()</a></code> to valuate function in R or shell command via <code>nix-shell</code> environment</li>
+<li>Added <code><a href="../reference/tar_nix_ga.html">tar_nix_ga()</a></code>, a function to run targets pipelines on Github Actions using a Nix expression</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.0" id="rix-060-2024-02-02">rix 0.6.0 (2024-02-02)<a class="anchor" aria-label="anchor" href="#rix-060-2024-02-02"></a></h2>
 <div class="section level3">
