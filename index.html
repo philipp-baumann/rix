@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Provides helper functions to create reproducible development environments using the Nix package manager.">
 <title>Rix: Reproducible Environments with Nix • rix</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -15,80 +14,72 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Rix: Reproducible Environments with Nix">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Rix: Reproducible Environments with Nix">
+<meta name="description" content="Provides helper functions to create reproducible development environments using the Nix package manager.">
 <meta property="og:description" content="Provides helper functions to create reproducible development environments using the Nix package manager.">
 <meta property="og:image" content="https://b-rodrigues.github.io/rix/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="index.html">rix</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/a-getting-started.html">a - Getting started</a>
-    <a class="dropdown-item" href="articles/b1-setting-up-and-using-rix-on-linux-and-windows.html">b1 - Setting up and using rix on Linux and Windows</a>
-    <a class="dropdown-item" href="articles/b2-setting-up-and-using-rix-on-macos.html">b2 - Setting up and using rix on macOS</a>
-    <a class="dropdown-item" href="articles/c-using-rix-to-build-project-specific-environments.html">c - Using rix to build project specific environments</a>
-    <a class="dropdown-item" href="articles/d1-installing-r-packages-in-a-nix-environment.html">d1 - Installing R packages in a Nix environment</a>
-    <a class="dropdown-item" href="articles/d2-installing-system-tools-and-texlive-packages-in-a-nix-environment.html">d2 - Installing system tools and TexLive packages in a Nix environment</a>
-    <a class="dropdown-item" href="articles/e-interactive-use.html">e - Interactive use</a>
-    <a class="dropdown-item" href="articles/z-advanced-topic-building-an-environment-for-literate-programming.html">z - Advanced topic: Building an environment for literate programming</a>
-    <a class="dropdown-item" href="articles/z-advanced-topic-handling-packages-with-remote-dependencies.html">z - Advanced topic: Handling packages with remote dependencies</a>
-    <a class="dropdown-item" href="articles/z-advanced-topic-reproducible-analytical-pipelines-with-nix.html">z - Advanced topic: Reproducible Analytical Pipelines with Nix</a>
-    <a class="dropdown-item" href="articles/z-advanced-topic-running-r-or-shell-code-in-nix-from-r.html">z - Advanced topic: Running R or Shell Code in Nix from R</a>
-    <a class="dropdown-item" href="articles/z-advanced-topic-using-nix-inside-docker.html">z - Advanced topic: Using Nix inside Docker</a>
-    <a class="dropdown-item" href="articles/z-binary_cache.html">z - Advanced topic: Rolling out your own binary cache</a>
-    <a class="dropdown-item" href="articles/z-bleeding_edge.html">z - Advanced topic: Understanding the rPackages set release cycle and using bleeding edge packages</a>
-    <a class="dropdown-item" href="articles/z-contributing_to_nixpkgs.html">z - Advanced topic: Contributing to nixpkgs</a>
-    <a class="dropdown-item" href="articles/z-developers-vignette-generate-an-environment-with-rix-only.html">z - Developers Vignette: Generate an environment with rix only</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/a-getting-started.html">a - Getting started</a></li>
+    <li><a class="dropdown-item" href="articles/b1-setting-up-and-using-rix-on-linux-and-windows.html">b1 - Setting up and using rix on Linux and Windows</a></li>
+    <li><a class="dropdown-item" href="articles/b2-setting-up-and-using-rix-on-macos.html">b2 - Setting up and using rix on macOS</a></li>
+    <li><a class="dropdown-item" href="articles/c-using-rix-to-build-project-specific-environments.html">c - Using rix to build project specific environments</a></li>
+    <li><a class="dropdown-item" href="articles/d1-installing-r-packages-in-a-nix-environment.html">d1 - Installing R packages in a Nix environment</a></li>
+    <li><a class="dropdown-item" href="articles/d2-installing-system-tools-and-texlive-packages-in-a-nix-environment.html">d2 - Installing system tools and TexLive packages in a Nix environment</a></li>
+    <li><a class="dropdown-item" href="articles/e-interactive-use.html">e - Interactive use</a></li>
+    <li><a class="dropdown-item" href="articles/z-advanced-topic-building-an-environment-for-literate-programming.html">z - Advanced topic: Building an environment for literate programming</a></li>
+    <li><a class="dropdown-item" href="articles/z-advanced-topic-handling-packages-with-remote-dependencies.html">z - Advanced topic: Handling packages with remote dependencies</a></li>
+    <li><a class="dropdown-item" href="articles/z-advanced-topic-reproducible-analytical-pipelines-with-nix.html">z - Advanced topic: Reproducible Analytical Pipelines with Nix</a></li>
+    <li><a class="dropdown-item" href="articles/z-advanced-topic-running-r-or-shell-code-in-nix-from-r.html">z - Advanced topic: Running R or Shell Code in Nix from R</a></li>
+    <li><a class="dropdown-item" href="articles/z-advanced-topic-using-nix-inside-docker.html">z - Advanced topic: Using Nix inside Docker</a></li>
+    <li><a class="dropdown-item" href="articles/z-binary_cache.html">z - Advanced topic: Rolling out your own binary cache</a></li>
+    <li><a class="dropdown-item" href="articles/z-bleeding_edge.html">z - Advanced topic: Understanding the rPackages set release cycle and using bleeding edge packages</a></li>
+    <li><a class="dropdown-item" href="articles/z-contributing_to_nixpkgs.html">z - Advanced topic: Contributing to nixpkgs</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/b-rodrigues/rix/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/b-rodrigues/rix/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><ul>
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="rix-reproducible-environments-with-nix-">rix: Reproducible Environments with Nix 
+<a class="anchor" aria-label="anchor" href="#rix-reproducible-environments-with-nix-"></a>
+</h1>
+</div>
+<ul>
 <li>
 <a href="#reproducible-environments-with-nix">Reproducible Environments with Nix</a>
 <ul>
@@ -100,6 +91,15 @@
 <li><a href="#docker">Docker</a></li>
 </ul>
 </li>
+<li>
+<a href="#how-is-nix-different-from-dockerrenvgroundhogranganaminicondaguix-or-why-nix">How is Nix different from Docker+renv/{groundhog}/{rang}/(Ana/Mini)Conda/Guix? or Why Nix?</a>
+<ul>
+<li><a href="#docker-and-renv">Docker and renv</a></li>
+<li><a href="#anamini-conda-and-mamba">Ana/Miniconda and Mamba</a></li>
+<li><a href="#how-is-nix-different-from-guix">How is Nix different from Guix?</a></li>
+<li><a href="#is-rix-all-there-is">Is rix all there is?</a></li>
+</ul>
+</li>
 <li><a href="#contributing">Contributing</a></li>
 <li><a href="#thanks">Thanks</a></li>
 <li><a href="#recommended-reading">Recommended reading</a></li>
@@ -108,18 +108,13 @@
 </ul>
 <!-- badges: start -->
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<div class="section level1">
-<div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="rix-reproducible-environments-with-nix-">rix: Reproducible Environments with Nix 
-<a class="anchor" aria-label="anchor" href="#rix-reproducible-environments-with-nix-"></a>
-</h1>
-</div>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p><a href="https://b-rodrigues.github.io/rix/">rix</a> is an R package that leverages <a href="https://nixos.org/" class="external-link">Nix</a>, a powerful package manager focusing on reproducible builds. With Nix, it is possible to create project-specific environments that contain a project-specific version of R and R packages (as well as other tools or languages, if needed). This project-specific environment will also include all the required system-level dependencies that can be difficult to install, such as <code>GDAL</code> for packages for geospatial analysis for example. This is how Nix installs software: it installs software as a complete “bundle” that include all of its dependencies, and all of the dependencies’ dependencies and so on. Nix is an incredibly useful piece of software for ensuring reproducibility of projects, in research or otherwise. For example, it allows you run web applications like Shiny apps or <a href="https://www.rplumber.io" class="external-link">plumber</a> APIs in a controlled environment, or run <a href="https://docs.ropensci.org/targets/" class="external-link">targets</a> pipelines with the right version of R and dependencies, and it is also possible to use environments managed by Nix to work interactively using an IDE.</p>
-<p>In essence, this means that you can use <a href="https://b-rodrigues.github.io/rix/">rix</a> and Nix to replace <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> and Docker with one single tool, but the approach is quite different: <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> records specific versions of individual packages, while <a href="https://b-rodrigues.github.io/rix/">rix</a> provides a complete snapshot of the R ecosystem at a specific point in time, but also snapshots all the required dependencies to make your project-specific R environment work. To ensure complete reproducibility with <a href="https://rstudio.github.io/renv/" class="external-link">renv</a>, it must be combined with Docker, in order to include system-level dependencies (like <code>GDAL</code>, as per the example above).</p>
-<p>Nix has a fairly high entry cost though. Nix is a complex piece of software that comes with its own programming language, which is also called Nix. Its purpose is to solve a complex problem: defining instructions on how to build software packages and manage configurations in a declarative way. This makes sure that software gets installed in a fully reproducible manner, on any operating system or hardware.</p>
+<p><a href="https://b-rodrigues.github.io/rix/">rix</a> is an R package that leverages <a href="https://nixos.org/" class="external-link">Nix</a>, a powerful package manager focusing on reproducible builds. With Nix, it is possible to create project-specific environments that contain a project-specific version of R and R packages (as well as other tools or languages, if needed). This project-specific environment will also include all the required system-level dependencies that can be difficult to install, such as <code>GDAL</code> for packages for geospatial analysis for example. Nix installs software as a complete “bundle” that include all of the software’s dependencies, and all of the dependencies’ dependencies and so on. Nix is an incredibly useful piece of software for ensuring reproducibility of projects, in research or otherwise.</p>
+<p>Some other use cases include, for example, running web applications like Shiny apps or <a href="https://www.rplumber.io" class="external-link">plumber</a> APIs in a controlled environment, or executing <a href="https://docs.ropensci.org/targets/" class="external-link">targets</a> pipelines with the right version of R and dependencies, or use environments managed by Nix to work interactively using an IDE.</p>
+<p>In essence, this means that you can use <a href="https://b-rodrigues.github.io/rix/">rix</a> and Nix to replace <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> and Docker with one single tool, but the approach is quite different: <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> records specific versions of individual packages, while <a href="https://b-rodrigues.github.io/rix/">rix</a> provides a complete snapshot of the R ecosystem at a specific point in time, but also snapshots all the required dependencies to make your project-specific R environment work. In contrast, to ensure complete reproducibility with <a href="https://rstudio.github.io/renv/" class="external-link">renv</a>, it must be combined with Docker, in order to include system-level dependencies (like <code>GDAL</code>, as per the example above).</p>
+<p>Nix has a fairly steep learning curve though. Nix is a complex piece of software that comes with its own programming language, which is also called Nix. Its purpose is to solve a complex problem: defining instructions on how to build software packages and manage configurations in a declarative way, using functional programming principles. This makes sure that software gets installed in a fully reproducible manner, on any operating system or hardware, but with the caveat that users must learn the Nix programming language and get into the “functional programming approach to software management” mindset, which is unusual.</p>
 <p><a href="https://b-rodrigues.github.io/rix/">rix</a> provides functions to help you write Nix expressions (written in the Nix language). These expressions will be the inputs for the Nix package manager, to build sets of software packages and provide them in a reproducible development environment. These environments can be used for interactive data analysis, or reproduced when running pipelines in CI/CD systems. The <a href="https://github.com/nixos/nixpkgs" class="external-link">Nixpkgs collection</a> includes currently more than 100.000 pieces of software available through the Nix package manager.</p>
 <p>With <a href="https://b-rodrigues.github.io/rix/">rix</a>, you can define development environments, or shells, that contain the required tools needed to analyze data using R. These environments are isolated from each other and project-specific: this means that a project can use one version of R and R packages, and another environment another version of R and R packages. However, extra care is required if you already have R installed through the usual method for your operating system, as these development environments are not totally isolated from the rest of your system. Unlike Docker, where a running container cannot acces anything from the host system, unless explicitely configured to do so, Nix development shells are nothing but environments that add more software to the list of already available software (the so-called <code>PATH</code>). As such, it is possible to access anything (files and software) already present on the system from a running Nix shell. Thus, <a href="https://b-rodrigues.github.io/rix/">rix</a> also provides a function called <code><a href="reference/rix_init.html">rix_init()</a></code> that helps isolate R sessions running inside Nix environments from the rest of your system. This avoids clashes between the Nix-specific library of R packages and the user library of R packages should you already have R installed and managed by the usual method for your operating system.</p>
 <p>It is also possible to add any other software package available on Nixpkgs to a Nix environment, for example IDEs such as RStudio or VS Code. The Nix R ecosystem currently includes almost the entirety of CRAN and Bioconductor packages (there is around a hundred CRAN or Biocondcuctor packages that are unavailable through Nix). Like with any other programming language or software, it is also possible to install older releases of R packages, or install packages from GitHub at defined states, as well as local packages in the <code>.tar.gz</code> format.</p>
@@ -133,21 +128,28 @@
 <p><a href="https://b-rodrigues.github.io/rix/">rix</a> does not require Nix to be installed on your system to generate expressions. This means that you can generate expressions on a system on which you cannot easily install software, and then use these expressions on the cloud or on a CI/CD environment to build the project there.</p>
 <p>If you have R installed, you can start straight away from your R session by first installing <a href="https://b-rodrigues.github.io/rix/">rix</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rix"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://b-rodrigues.r-universe.dev"</span>,</span>
-<span>  <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rix"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://b-rodrigues.r-universe.dev"</span>,</span>
+<span>  <span class="st">"https://cloud.r-project.org"</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://b-rodrigues.github.io/rix/">"rix"</a></span><span class="op">)</span></span></code></pre></div>
+<p>Now try to build an expression using <code><a href="reference/rix.html">rix()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">path_default_nix</span> <span class="op">&lt;-</span> <span class="st">"."</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://b-rodrigues.github.io/rix/">rix</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/rix.html">rix</a></span><span class="op">(</span>r_ver <span class="op">=</span> <span class="st">"4.3.3"</span>,</span>
-<span>    r_pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span><span class="op">)</span>,</span>
-<span>    system_pkgs <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    git_pkgs <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    ide <span class="op">=</span> <span class="st">"code"</span>,</span>
-<span>    project_path <span class="op">=</span> <span class="va">path_default_nix</span>,</span>
-<span>    overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>    print <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">path_default_nix</span> <span class="op">&lt;-</span> <span class="st">"."</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/rix.html">rix</a></span><span class="op">(</span></span>
+<span>  r_ver <span class="op">=</span> <span class="st">"4.3.3"</span>,</span>
+<span>  r_pkgs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span><span class="op">)</span>,</span>
+<span>  system_pkgs <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  git_pkgs <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ide <span class="op">=</span> <span class="st">"code"</span>,</span>
+<span>  project_path <span class="op">=</span> <span class="va">path_default_nix</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  print <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>This generates a file called <code>default.nix</code> in the path <code>path_default_nix</code> with the correct expression to build this environment. To build the environment, the Nix package manager must be installed. If you have Nix installed, you can build the expression above using the <code>nix-build</code> terminal command and then enter the environment using <code>nix-shell</code>. The vignettes included in the package walk you through the whole workflow.</p>
 </div>
 <div class="section level2">
@@ -187,6 +189,36 @@ You can then create new development environment definitions, build them, and sta
 </div>
 </div>
 <div class="section level2">
+<h2 id="how-is-nix-different-from-dockerrenvgroundhogranganaminicondaguix-or-why-nix">How is Nix different from Docker+renv/{groundhog}/{rang}/(Ana/Mini)Conda/Guix? or Why Nix?<a class="anchor" aria-label="anchor" href="#how-is-nix-different-from-dockerrenvgroundhogranganaminicondaguix-or-why-nix"></a>
+</h2>
+<div class="section level3">
+<h3 id="docker-and-renv">Docker and renv<a class="anchor" aria-label="anchor" href="#docker-and-renv"></a>
+</h3>
+<p>Let’s start with arguably the most popular combo for reproducibility in the R ecosystem, Docker+<a href="https://rstudio.github.io/renv/" class="external-link">renv</a>.</p>
+<p>{renv} snapshots the state of the library of R packages for a project, nothing more, nothing less, unless you also use <a href="https://cran4linux.github.io/rspm/" class="external-link">rspm</a> or <a href="https://cran4linux.github.io/bspm/" class="external-link">bspm</a> in combination to <a href="https://rstudio.github.io/renv/" class="external-link">renv</a>: this will install the required system-level dependencies automatically. <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> can then be used to restore the library of packages on another machine, but it is the user’s responsibility to ensure that the right version of R and system-level dependencies are available on that other machine. This is why <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> is often coupled with a versioned Docker image, such as the images from the <a href="https://hub.docker.com/r/rocker/r-ver" class="external-link">Rocker project</a>. Combining both provides a very robust way to serve applications such as Shiny apps, but it can be awkward to develop interactively with this setup, which is why most of the time, people work on their current setup, and <em>dockerize</em> the setup once when they’re done. However, you need to make sure to keep updating the image, as the underlying operating system will eventually reach end of life. Eventually, you might even have to update the whole stack as it could become impossible to install the version of R and R packages you used on a recent Docker image. This can be a good thing actually; it could be the opportunity to update your app and make sure that it benefits from the latest security patches. However for reproducibility in research, this is not something that you should be doing because it could have an impact on historical results.</p>
+<p>What we suggest instead, is to keep using Docker if you are already invested in the ecosystem, and continue to use it to deploy and serve applications and archive research. But instead of using <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> to get the right packages, you combine Docker and Nix. This way, you have a nice separation of concerns: Docker will only be used as a platter to serve code, while the environment will be handled by Nix. You could even use an image that gets continuously updated such as <code>ubuntu:latest</code> as a base: it doesn’t matter that the image is always changing, since the environment that will be doing the heavy lifting inside the container is completely reproducible thanks to Nix.</p>
+<p>Exactly the same reasoning can be applied to <a href="https://groundhogr.com/" class="external-link">groundhog</a>, <a href="https://github.com/gesistsa/rang" class="external-link">rang</a> or the CRAN snapshots of Posit in combination to Docker instead of <a href="https://rstudio.github.io/renv/" class="external-link">renv</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="anamini-conda-and-mamba">Ana/Mini-conda and Mamba<a class="anchor" aria-label="anchor" href="#anamini-conda-and-mamba"></a>
+</h3>
+<p>Anaconda, Miniconda, Mamba, Micromamba… (henceforth we’ll refer to these as Conda) and Nix have much in common: they are multiplatform package managers and both can be used to setup reproducible development environments for many languages, such as R or Python. Using <a href="https://github.com/conda/conda-lock" class="external-link">conda-lock</a> one can generate fully reproducible lock files that can then be used by Conda to build the environment as defined in the lock file. The main difference between Conda and Nix is conceptual and might not seem that important for end-users: Conda is a procedural package manager, while Nix is a functional package manager. In practice this means that environments managed by Conda are mutable and users are not prevented from changing their environment interactively, and then re-generate the lock file. This is quite comfortable when working interactively, but can lead to issues where dependency management might get borked.</p>
+<p>In the case of Nix however, environments are immutable: you cannot add software into a running Nix environment. You will need to stop working, re-define the environment, rebuild it and then use it. While this might sound more tedious (it is) it forces users to work more “cleanly” and avoids many issues from dynamically changing an environment. If it is not possible to build that environment, it fails as early as possible and forces you to deal with the issue. A mutating environment could lead you into a false sense of safeness.</p>
+<p>Another major difference is that Conda does not include the entirety of CRAN nor Bioconductor, which is the case for Nix. According to <a href="https://docs.anaconda.com/working-with-conda/packages/using-r-language/" class="external-link">Anaconda’s Documentation</a> 6000 CRAN packages are available through Conda (as of writing in July 2024, CRAN has 21’000+ packages). Nix also includes almost all of Bioconductor packages, and Conda includes them trough the Bioconda project, however, we were not able to find if Bioconda contains all of Bioconductor. According to Bioconda’s FAQ, <a href="https://bioconda.github.io/faqs.html#why-are-bioconductor-data-packages-failing-to-install" class="external-link">Bioconductor data packages are not included.</a></p>
+</div>
+<div class="section level3">
+<h3 id="how-is-nix-different-from-guix">How is Nix different from Guix?<a class="anchor" aria-label="anchor" href="#how-is-nix-different-from-guix"></a>
+</h3>
+<p>Just like Nix, Guix is a functional package manager with a focus on reproducible builds. We won’t go into technical differences/similarities, but only to pratical ones for end-users of the R programming language. If you want to know about technical aspects, read this <a href="Hackernews%20post%20by%20one%20of%20the%20authors%20of%20Guix">https://news.ycombinator.com/item?id=18910683</a>. The main shortcoming of Guix for R users is that not all CRAN or Bioconductor packages are included, nor is Guix available on Windows or macOS.</p>
+</div>
+<div class="section level3">
+<h3 id="is-rix-all-there-is">Is {rix} all there is?<a class="anchor" aria-label="anchor" href="#is-rix-all-there-is"></a>
+</h3>
+<p>No, there are other tools that you might want to check out, especially if you want to set up polyglot environments (even though it is possible to use <a href="https://b-rodrigues.github.io/rix/">rix</a> to set up an environment with R and Python packages for example).</p>
+<p>Take a look at <a href="https://devenv.sh/" class="external-link uri">https://devenv.sh/</a> and <a href="https://prefix.dev/" class="external-link uri">https://prefix.dev/</a> if you want to explore other tools that make using Nix easier!</p>
+</div>
+</div>
+<div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
 </h2>
 <p>Refer to <code>Contributing.md</code> to learn how to contribute to the package.</p>
@@ -195,6 +227,7 @@ You can then create new development environment definitions, build them, and sta
 <h2 id="thanks">Thanks<a class="anchor" aria-label="anchor" href="#thanks"></a>
 </h2>
 <p>Thanks to the <a href="https://nixos.org/community/" class="external-link">Nix community</a> for making Nix possible, and thanks to the community of R users on Nix for their work packaging R and CRAN/Bioconductor packages for Nix (in particular <a href="https://github.com/jbedo" class="external-link">Justin Bedő</a>, <a href="https://github.com/minijackson" class="external-link">Rémi Nicole</a>, <a href="https://github.com/nviets" class="external-link">nviets</a>, <a href="https://github.com/cfhammill" class="external-link">Chris Hammill</a>, <a href="https://github.com/Kupac" class="external-link">László Kupcsik</a>, <a href="https://github.com/ciil" class="external-link">Simon Lackerbauer</a>, <a href="https://github.com/MrTarantoga" class="external-link">MrTarantoga</a> and every other person from the <a href="https://matrix.to/#/#r:nixos.org" class="external-link">Matrix Nixpkgs R channel</a>).</p>
+<p>Finally, thanks to <a href="https://x.com/dsolito" class="external-link">David Solito</a> for creating <a href="https://b-rodrigues.github.io/rix/">rix</a>’s logo!</p>
 </div>
 <div class="section level2">
 <h2 id="recommended-reading">Recommended reading<a class="anchor" aria-label="anchor" href="#recommended-reading"></a>
@@ -217,7 +250,6 @@ You can then create new development environment definitions, build them, and sta
 </ul>
 </div>
 </div>
-
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -259,7 +291,7 @@ You can then create new development environment definitions, build them, and sta
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/b-rodrigues/rix/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/b-rodrigues/rix/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/b-rodrigues/rix/actions/workflows/rhub.yaml/badge.svg" class="external-link"><img src="https://github.com/b-rodrigues/rix/actions/workflows/rhub.yaml/badge.svg" alt="R-hub v2"></a></li>
 <li><a href="https://b-rodrigues.r-universe.dev/rix" class="external-link"><img src="https://b-rodrigues.r-universe.dev/badges/rix?scale=1&amp;color=pink&amp;style=round" alt="runiverse-package rix"></a></li>
 <li><a href="https://b-rodrigues.github.io/rix"><img src="https://img.shields.io/badge/docs-release-blue.svg" alt="Docs"></a></li>
 <li><a href="https://github.com/ropensci/software-review/issues/625" class="external-link"><img src="https://badges.ropensci.org/625_status.svg" alt="Status at rOpenSci Software Peer Review"></a></li>
@@ -275,15 +307,15 @@ You can then create new development environment definitions, build them, and sta
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
